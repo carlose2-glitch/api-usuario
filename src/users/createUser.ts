@@ -14,17 +14,22 @@ export class CreateUserEvaluate {
 
         const findUserCi = await this.UserDocument.find({ci:create.ci});
        
-        const findUserUser = await this.UserDocument.find({user:create.user})
+        const findUserUser = await this.UserDocument.find({user:create.user});
+//Solo la primera letra debe ser mayuscula terminar con caracter especial y max debe tener una longitud de 8 caracteres
+        const userRegex = /^([A-Z][a-z0-9]{1,6}[#*_.$!+-/\\"\[\]\?\¿!¡])$/;
 
+        const evaluateRegex = userRegex.test(create.user);
 
-        if(findUserCi[0] === undefined && findUserUser[0] === undefined){
-            await this.UserDocument.create(create);
-            return 'Creado con exito';
+        if(findUserCi[0] !== undefined || findUserUser[0] !== undefined){
+         
+            return 'La cedula o el usuario ya existe'
         }
-        return 'La cedula o el usuario ya existe'
 
-        
-
+        if(evaluateRegex){
+            await this.UserDocument.create(create);
+        }else{
+            return 'Solo la primera letra debe ser mayuscula terminar con caracter especial y max debe tener una longitud de 8 caracteres';
+        }
 
     }
 }

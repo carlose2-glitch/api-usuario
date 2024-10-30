@@ -1,36 +1,38 @@
 import { Body, Controller, Delete, Get, Patch, Post, Put } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { createUserDto } from 'src/dto/User.dto';
+import { updateUserDto } from './dto/update-user.dto';
 
-@Controller({})
+@Controller('/users')
 export class UsersController {
  
 
     constructor(private UsersService: UsersService){}
-  
-  @Get('/users')
+  //obtener todos los usuarios
+  @Get()
   getAllUsers() {
     return this.UsersService.getUsers();
   }
-
-  @Post('/users')
+//crear usuario
+  @Post()
   addUser(@Body() createUser: createUserDto){
     return this.UsersService.createUser(createUser);
   }
  
-  @Put('/users')
+  @Put()
   updateUsers(){
     return 'actualizando usuario'
   }
 
-  @Delete('/users')
+  @Delete()
   deleteUsers(){
     return 'borrando usuario'
   }
-
-  @Patch('/users')
-  upateUsersSatus(){
-    return 'actualizar parte especifica del usuario'
+//actualizar usuario
+  @Patch()
+  upateUsersSatus(@Body() data: updateUserDto){
+    console.log(data);
+    return this.UsersService.updated(data);
   }
 
 }

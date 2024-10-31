@@ -31,7 +31,6 @@ export class UsersController {
 //actualizar usuario
   @Patch()
   upateUsersSatus(@Body() data: updateUserDto){
-    console.log(data);
     return this.UsersService.updated(data);
   }
 

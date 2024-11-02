@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { createUser, usersSchema } from './databaseUser.schema';
 import { CreateUserEvaluate } from './createUser';
 import { updateUser } from './updateUser';
+import { updatePass } from './updatePass';
 
 @Module({
   imports: [
@@ -16,6 +17,6 @@ import { updateUser } from './updateUser';
       
   ],
   controllers: [UsersController],
-  providers:[UsersService, CreateUserEvaluate, updateUser]
+  providers:[UsersService, CreateUserEvaluate, updateUser, updatePass]
 })
 export class UsersModule {}

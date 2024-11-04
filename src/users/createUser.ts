@@ -29,6 +29,7 @@ export class CreateUserEvaluate {
 
         if(evaluateRegex){
             await this.UserDocument.create(create);
+            return 'Usuario creado'
         }else{
             return 'El Usuario y la clave solo la primera letra debe ser mayuscula terminar con caracter especial y max debe tener una longitud de 8 caracteres';
         }

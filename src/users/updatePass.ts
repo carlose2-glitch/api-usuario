@@ -28,6 +28,8 @@ export class updatePass {
             });
 
             const r = result !== null ? 'ok' : 'El Usuario no existe'; 
+            
+            
             return r;
 
         }

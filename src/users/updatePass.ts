@@ -13,15 +13,26 @@ export class updatePass {
 
     async updatePass(updatePass: updatePassDto){
 
-
+        const userRegex = /^([A-Z][a-z0-9]{1,6}[#*_.$!+-/\\"\[\]\?\¿!¡])$/;
+    
         const user = { user: updatePass.user};
-        
-        await this.Database.findOneAndUpdate(user, {
-            password:updatePass.password
-        });
+    
+        const verificationPassRegex = userRegex.test(updatePass.password);
 
 
-        return 'ok'
+        if(verificationPassRegex){
+
+
+          const result =  await this.Database.findOneAndUpdate(user, {
+                password:updatePass.password
+            });
+
+            const r = result !== null ? 'ok' : 'El Usuario no existe'; 
+            return r;
+
+        }
+
+            return 'El Usuario y la clave solo la primera letra debe ser mayuscula terminar con caracter especial y max debe tener una longitud de 8 caracteres';
     }
 
 

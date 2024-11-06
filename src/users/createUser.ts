@@ -18,7 +18,8 @@ export class CreateUserEvaluate {
 //Solo la primera letra debe ser mayuscula terminar con caracter especial y max debe tener una longitud de 8 caracteres
         const userRegex = /^([A-Z][a-z0-9]{1,6}[#*_.$!+-/\\"\[\]\?\¿!¡])$/;
 
-        const evaluateRegex = userRegex.test(create.user && create.password);
+        const evaluateRegex = userRegex.test(create.user);
+        const evaluatePass = userRegex.test(create.password);
 
 
         console.log(evaluateRegex);
@@ -27,7 +28,7 @@ export class CreateUserEvaluate {
             return 'La cedula o el usuario ya existe'
         }
 
-        if(evaluateRegex){
+        if(evaluateRegex && evaluatePass){
             await this.UserDocument.create(create);
             return 'Usuario creado'
         }else{

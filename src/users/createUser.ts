@@ -2,6 +2,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { createUserDto } from "src/dto/User.dto";
 import { createUser, UserDocument } from "./databaseUser.schema";
 import { Model } from "mongoose";
+import { hash } from "bcrypt";
 
 
 
@@ -28,7 +29,12 @@ export class CreateUserEvaluate {
             return 'La cedula o el usuario ya existe'
         }
 
+       const passwordBcrypt = await hash(create.password, 10);
+
+
         if(evaluateRegex && evaluatePass){
+            create = {...create, password: passwordBcrypt};
+
             await this.UserDocument.create(create);
             return 'Usuario creado'
         }else{

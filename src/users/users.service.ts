@@ -8,14 +8,16 @@ import { updateUser } from "./updateUser";
 import { updateUserDto } from "./dto/update-user.dto";
 import { updatePassDto } from "./dto/change-Pass-dto";
 import { updatePass } from "./updatePass";
+import { loginUser } from "src/dto/Loginuser.dto";
+import { loginUsers } from "./loginUser";
 
 @Injectable()
 export class UsersService{
-    constructor(@InjectModel(createUser.name) private UserDocument:Model<UserDocument>, private Evaluate: CreateUserEvaluate, private Update: updateUser, private UpdatePass: updatePass){
+    constructor(@InjectModel(createUser.name) private UserDocument:Model<UserDocument>, private Evaluate: CreateUserEvaluate, private Update: updateUser, private UpdatePass: updatePass, private LoginUsers: loginUsers){
     }
 
     async getUsers(){
-
+//extrae los datos de la db
         const data = await this.UserDocument.find({});
 
         return [data];
@@ -24,6 +26,14 @@ export class UsersService{
     async createUser(createUser: createUserDto){
 
        const data = await this.Evaluate.evaluate(createUser);
+        return data;
+    }
+
+    async loginUser(login: loginUser){
+
+
+        const data = await this.LoginUsers.loginSearch(login);
+
         return data;
     }
 

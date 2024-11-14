@@ -8,9 +8,14 @@ import { updateUser } from './updateUser';
 import { updatePass } from './updatePass';
 import { JwtModule } from '@nestjs/jwt';
 import { loginUsers } from './loginUser';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal:true,
+    }),
     MongooseModule.forFeature([
       {
         name: createUser.name, 

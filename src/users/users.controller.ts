@@ -1,9 +1,10 @@
-import { Body, Controller, Delete, Get, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Patch, Post, Put, Res } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { createUserDto } from 'src/dto/User.dto';
 import { updateUserDto } from './dto/update-user.dto';
 import { updatePassDto } from './dto/change-Pass-dto';
 import { loginUser } from 'src/dto/Loginuser.dto';
+import { Response } from 'express';
 
 @Controller('/users')
 export class UsersController {
@@ -12,7 +13,8 @@ export class UsersController {
     constructor(private UsersService: UsersService){}
   //obtener todos los usuarios
   @Get()
-  getAllUsers() {
+  getAllUsers(@Res({passthrough: true}) response: Response) {
+
     return this.UsersService.getUsers();
   }
 //crear usuario
@@ -21,9 +23,14 @@ export class UsersController {
     return this.UsersService.createUser(createUser);
   }
 //obtener usuario
+
   @Post('/login')
-    login(@Body() login: loginUser){
-      return this.UsersService.loginUser(login);
+    login(@Body() login: loginUser, @Res({passthrough: true}) response: Response){
+      
+      const data = this.UsersService.loginUser(login);
+
+      response.cookie('value', 'aaaaa');
+      return data;
     }
  
   @Put()

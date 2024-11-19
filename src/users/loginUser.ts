@@ -3,7 +3,11 @@ import { createUser, UserDocument } from "./databaseUser.schema";
 import { Model } from "mongoose";
 import { loginUser } from "src/dto/Loginuser.dto";
 import { compare } from "bcrypt";
+import fastifyCookie from '@fastify/cookie';
+
 import { JwtService } from "@nestjs/jwt";
+import { Res} from "@nestjs/common";
+
 
 
 
@@ -13,7 +17,7 @@ export class loginUsers{
     constructor(@InjectModel(createUser.name) private LoginDocument: Model<UserDocument>, private jwtAuthService: JwtService){}
 
 
-    async loginSearch(login: loginUser){
+    async loginSearch( login: loginUser){
 
         const findUser = await this.LoginDocument.findOne({user:login.user})
         
@@ -36,11 +40,9 @@ export class loginUsers{
 
             const token = this.jwtAuthService.sign(payload);
 
-           
+            const data = await this.jwtAuthService.verifyAsync(token, { secret: process.env.JWT_KEY});
 
-            const data = await this.jwtAuthService.verifyAsync(token, { secret: process.env.JWT_KEY})
-
-
+     
 
             return data;
         }

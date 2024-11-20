@@ -4,7 +4,7 @@ import { createUser, UserDocument } from "./databaseUser.schema";
 import { Model } from "mongoose";
 import { hash } from "bcrypt";
 import { JwtService } from "@nestjs/jwt";
-import { Response } from "express"; 
+
 
 
 
@@ -46,7 +46,7 @@ export class CreateUserEvaluate {
 
            const token = this.jwtAuthService.sign(payload);
 
-           response.cookie('jwt', token);
+           response.cookie('jwt', token)
 
 
 

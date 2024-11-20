@@ -10,7 +10,6 @@ import { updatePassDto } from "./dto/change-Pass-dto";
 import { updatePass } from "./updatePass";
 import { loginUser } from "src/dto/Loginuser.dto";
 import { loginUsers } from "./loginUser";
-import { Response } from "express";
 
 @Injectable()
 export class UsersService{

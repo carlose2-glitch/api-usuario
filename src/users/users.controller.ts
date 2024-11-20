@@ -28,8 +28,6 @@ export class UsersController {
     login(@Body() login: loginUser, @Res({passthrough: true}) response: Response){
       
       const data = this.UsersService.loginUser(login);
-
-      response.cookie('value', 'aaaaa');
       return data;
     }
  

@@ -3,8 +3,6 @@ import { createUser, UserDocument } from "./databaseUser.schema";
 import { Model } from "mongoose";
 import { loginUser } from "src/dto/Loginuser.dto";
 import { compare } from "bcrypt";
-import fastifyCookie from '@fastify/cookie';
-
 import { JwtService } from "@nestjs/jwt";
 import { Res} from "@nestjs/common";
 

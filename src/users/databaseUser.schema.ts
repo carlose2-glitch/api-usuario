@@ -18,7 +18,7 @@ export class createUser {
   @Prop({required: true})
   user: string;
 
-   @Prop({required: true})
+  @Prop({required: true})
   password: string;
   
 }

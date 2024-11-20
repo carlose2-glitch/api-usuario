@@ -19,8 +19,8 @@ export class UsersController {
   }
 //crear usuario
   @Post()
-  addUser(@Body() createUser: createUserDto){
-    return this.UsersService.createUser(createUser);
+  addUser(@Body() createUser: createUserDto, @Res({passthrough: true}) response: Response){
+    return this.UsersService.createUser(createUser, response);
   }
 //obtener usuario
 

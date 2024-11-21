@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Patch, Post, Put, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Res } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { createUserDto } from 'src/dto/User.dto';
 import { updateUserDto } from './dto/update-user.dto';
@@ -16,6 +16,15 @@ export class UsersController {
   getAllUsers(@Res({passthrough: true}) response: Response) {
 
     return this.UsersService.getUsers();
+  }
+
+  //obtener el token
+  @Get('/:token')
+  getToken(@Res({passthrough: true}) response: Response, @Param('token') token:string){
+
+    response.cookie('jwt', token)
+
+    return this.UsersService.getToken(response, token);
   }
 //crear usuario
   @Post()

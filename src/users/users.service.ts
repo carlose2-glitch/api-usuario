@@ -10,6 +10,7 @@ import { updatePassDto } from "./dto/change-Pass-dto";
 import { updatePass } from "./updatePass";
 import { loginUser } from "src/dto/Loginuser.dto";
 import { loginUsers } from "./loginUser";
+import { Response } from "express";
 
 @Injectable()
 export class UsersService{
@@ -49,6 +50,12 @@ export class UsersService{
         const result = await this.UpdatePass.updatePass(data);
     
         return result;
+    }
+
+    async getToken( response: Response, token:string){
+
+        return {token};
+
     }
 
 }

@@ -4,6 +4,7 @@ import { createUser, UserDocument } from "./databaseUser.schema";
 import { Model } from "mongoose";
 import { hash } from "bcrypt";
 import { JwtService } from "@nestjs/jwt";
+import { Response } from "express";
 
 
 
@@ -13,7 +14,7 @@ export class CreateUserEvaluate {
     constructor(@InjectModel(createUser.name) private UserDocument: Model<UserDocument>, private jwtAuthService: JwtService){}
     
 
-    async evaluate(create: createUserDto, response: any){
+    async evaluate(create: createUserDto, response: Response){
 
         const findUserCi = await this.UserDocument.find({ci:create.ci});
        
@@ -46,11 +47,10 @@ export class CreateUserEvaluate {
 
            const token = this.jwtAuthService.sign(payload);
 
-           response.cookie('jwt', token)
-
-
-
-            return 'Usuario creado'
+           return {
+            r: 'Usuario creado',
+            token: token
+           }
         }else{
             return 'El Usuario y la clave solo la primera letra debe ser mayuscula terminar con caracter especial y max debe tener una longitud de 8 caracteres';
         }

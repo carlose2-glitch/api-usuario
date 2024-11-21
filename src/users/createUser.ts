@@ -49,7 +49,7 @@ export class CreateUserEvaluate {
 
            return {
             r: 'Usuario creado',
-            token
+            token: token
            }
         }else{
             return 'El Usuario y la clave solo la primera letra debe ser mayuscula terminar con caracter especial y max debe tener una longitud de 8 caracteres';

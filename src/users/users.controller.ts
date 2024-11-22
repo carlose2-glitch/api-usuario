@@ -5,6 +5,7 @@ import { updateUserDto } from './dto/update-user.dto';
 import { updatePassDto } from './dto/change-Pass-dto';
 import { loginUser } from 'src/dto/Loginuser.dto';
 import { Response } from 'express';
+import { now } from 'mongoose';
 
 @Controller('/users')
 export class UsersController {
@@ -18,18 +19,11 @@ export class UsersController {
     return this.UsersService.getUsers();
   }
 
-  //obtener el token
-  @Get('/:token')
-  getToken(@Res({passthrough: true}) response: Response, @Param('token') token:string){
-
-    response.cookie('jwt', token)
-
-    return this.UsersService.getToken(response, token);
-  }
 //crear usuario
   @Post()
   addUser(@Body() createUser: createUserDto, @Res({passthrough: true}) response: Response){
-    return this.UsersService.createUser(createUser, response);
+    
+   return this.UsersService.createUser(createUser, response);
   }
 //obtener usuario
 

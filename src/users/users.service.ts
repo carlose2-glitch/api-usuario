@@ -51,11 +51,4 @@ export class UsersService{
     
         return result;
     }
-
-    async getToken( response: Response, token:string){
-
-        return {token};
-
-    }
-
 }

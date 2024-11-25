@@ -48,8 +48,9 @@ export class CreateUserEvaluate {
            const token = this.jwtAuthService.sign(payload);
 
            response.cookie('jwt', token,{
-            maxAge: 1000 * 60 * 5,
-            httpOnly: false,
+            expires: new Date(Date.now() + 1000 * 5),
+            httpOnly: true,
+            sameSite: 'lax',
             secure: false
             
     

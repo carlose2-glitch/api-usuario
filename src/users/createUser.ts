@@ -49,8 +49,8 @@ export class CreateUserEvaluate {
 
            response.cookie('jwt', token,{
             maxAge: 1000 * 60 * 5,
-            httpOnly: true,
-            sameSite: 'lax',
+            httpOnly: false,
+            secure: false
             
     
           })

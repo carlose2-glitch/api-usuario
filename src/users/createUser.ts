@@ -48,12 +48,12 @@ export class CreateUserEvaluate {
 
            const token = this.jwtAuthService.sign(payload);
 
-           response.cookie('jwt', token,{
+          /* response.cookie('jwt', token,{
             expires: new Date(Date.now() + 1000 * 60 * 5),
             httpOnly: true,
             sameSite: 'lax',
     
-          })
+          })*/
         
            return {
             r: 'Usuario creado',

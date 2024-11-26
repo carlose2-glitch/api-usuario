@@ -54,7 +54,7 @@ export class CreateUserEvaluate {
             sameSite: 'lax',
             domain: undefined,
             secure:false,
-            partitioned: false
+            partitioned: true
     
           })
         

@@ -53,7 +53,8 @@ export class CreateUserEvaluate {
             httpOnly: true,
             sameSite: 'lax',
             domain: undefined,
-            secure:false
+            secure:false,
+            partitioned: false
     
           })
         

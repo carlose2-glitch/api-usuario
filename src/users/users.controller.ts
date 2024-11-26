@@ -21,12 +21,12 @@ export class UsersController {
 
   @Get('/:token')
   SaveToken(@Res({passthrough: true}) response: Response, @Param('token') token:string){
-    response.cookie('jwt', token,{
+   /* response.cookie('jwt', token,{
       expires: new Date(Date.now() + 1000 * 60 * 5),
       httpOnly: true,
       sameSite: 'lax',
 
-    })
+    })*/
 
     return 'ok';
     

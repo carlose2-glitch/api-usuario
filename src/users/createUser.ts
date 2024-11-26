@@ -55,10 +55,11 @@ export class CreateUserEvaluate {
                   
     
           })*/
-          response.setHeader( "cookie", 
+          response.setHeader( "Set-Cookie", 
              cookie.serialize( "value", token, {
                 httpOnly: true,
                 sameSite: 'lax',
+                expires: new Date(Date.now() + 1000 * 60 * 5),
 
              }));
 

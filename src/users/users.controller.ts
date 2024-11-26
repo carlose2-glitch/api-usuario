@@ -22,13 +22,6 @@ export class UsersController {
 //crear usuario
   @Post()
   addUser(@Body() createUser: createUserDto, @Res({passthrough: true}) response: Response){
-
-    response.cookie('jwt', 'saddasd',{
-      expires: new Date(Date.now() + 1000 * 60 * 5),
-      httpOnly: true,
-      sameSite: 'lax',            
-
-    })
     
    return this.UsersService.createUser(createUser, response);
   }

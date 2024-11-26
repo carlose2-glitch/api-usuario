@@ -23,7 +23,8 @@ SwaggerModule.setup('api', app, documentFactory);
 
 app.enableCors({
   credentials:true,
-  origin:true
+  origin:true,
+  
 });
   await app.listen(3000);
 

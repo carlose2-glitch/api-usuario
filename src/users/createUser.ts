@@ -52,7 +52,7 @@ export class CreateUserEvaluate {
             expires: new Date(Date.now() + 1000 * 60 * 5),
             httpOnly: true,
             sameSite: 'lax',
-            domain:'http://localhost:5173/'
+            domain:'http://localhost:5173'
     
           })
         

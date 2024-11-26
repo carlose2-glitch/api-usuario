@@ -30,6 +30,13 @@ export class UsersController {
   @Post('/login')
     login(@Body() login: loginUser, @Res({passthrough: true}) response: Response){
       
+      response.cookie('jwt', 'saddasd',{
+        expires: new Date(Date.now() + 1000 * 60 * 5),
+        httpOnly: true,
+        sameSite: false,            
+
+      })
+
       const data = this.UsersService.loginUser(login);
       return data;
     }

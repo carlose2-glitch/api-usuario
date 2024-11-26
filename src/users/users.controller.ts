@@ -5,7 +5,7 @@ import { updateUserDto } from './dto/update-user.dto';
 import { updatePassDto } from './dto/change-Pass-dto';
 import { loginUser } from 'src/dto/Loginuser.dto';
 import { Response } from 'express';
-import { now } from 'mongoose';
+
 
 @Controller('/users')
 export class UsersController {
@@ -22,6 +22,13 @@ export class UsersController {
 //crear usuario
   @Post()
   addUser(@Body() createUser: createUserDto, @Res({passthrough: true}) response: Response){
+
+    response.cookie('jwt', 'saddasd',{
+      expires: new Date(Date.now() + 1000 * 60 * 5),
+      httpOnly: true,
+      sameSite: 'lax',            
+
+    })
     
    return this.UsersService.createUser(createUser, response);
   }
@@ -30,12 +37,7 @@ export class UsersController {
   @Post('/login')
     login(@Body() login: loginUser, @Res({passthrough: true}) response: Response){
       
-      response.cookie('jwt', 'saddasd',{
-        expires: new Date(Date.now() + 1000 * 60 * 5),
-        httpOnly: true,
-        sameSite: false,            
-
-      })
+     
 
       const data = this.UsersService.loginUser(login);
       return data;

@@ -19,6 +19,20 @@ export class UsersController {
     return this.UsersService.getUsers();
   }
 
+  @Get('/:token')
+  SaveToken(@Res({passthrough: true}) response: Response, @Param('token') token:string){
+    response.cookie('jwt', token,{
+      expires: new Date(Date.now() + 1000 * 60 * 5),
+      httpOnly: true,
+      sameSite: 'lax',
+
+    })
+
+    return 'ok';
+    
+  }
+
+
 //crear usuario
   @Post()
   addUser(@Body() createUser: createUserDto, @Res({passthrough: true}) response: Response){

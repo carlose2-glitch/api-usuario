@@ -50,7 +50,7 @@ export class CreateUserEvaluate {
 
            response.cookie('jwt', token,{
             expires: new Date(Date.now() + 1000 * 60 * 5),
-            httpOnly: false,
+            httpOnly: true,
             sameSite: 'lax',
     
           })

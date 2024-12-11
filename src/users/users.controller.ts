@@ -1,17 +1,19 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Res, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { createUserDto } from 'src/dto/User.dto';
 import { updateUserDto } from './dto/update-user.dto';
 import { updatePassDto } from './dto/change-Pass-dto';
 import { loginUser } from 'src/dto/Loginuser.dto';
 import { Response } from 'express';
+import { JwtService } from '@nestjs/jwt';
+
 
 
 @Controller('/users')
 export class UsersController {
  
 
-    constructor(private UsersService: UsersService){}
+    constructor(private UsersService: UsersService, private jwtVerify: JwtService){}
   //obtener todos los usuarios
   @Get()
   getAllUsers(@Res({passthrough: true}) response: Response) {
@@ -20,7 +22,19 @@ export class UsersController {
   }
 
   @Get('/:token')
-  SaveToken(@Res({passthrough: true}) response: Response, @Param('token') token:string){
+ async SaveToken(@Res({passthrough: true}) response: Response, @Param('token') token:string){
+
+    try {
+      const r = await this.jwtVerify.verifyAsync(token, {secret: process.env.JWT_KEY
+
+      });
+
+      return r;
+    } catch (error) {
+      throw new UnauthorizedException('ssadad');
+    }
+
+    
    /* response.cookie('jwt', token,{
       expires: new Date(Date.now() + 1000 * 60 * 5),
       httpOnly: true,
@@ -28,7 +42,7 @@ export class UsersController {
 
     })*/
 
-    return 'ok';
+    
     
   }
 

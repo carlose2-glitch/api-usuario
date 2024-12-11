@@ -42,7 +42,7 @@ export class loginUsers{
 
      
 
-            return data;
+            return token;
         }
 
         return 'Contraseña incorrecta';

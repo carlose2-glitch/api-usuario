@@ -6,6 +6,8 @@ import { updatePassDto } from './dto/change-Pass-dto';
 import { loginUser } from 'src/dto/Loginuser.dto';
 import { Response } from 'express';
 import { JwtService } from '@nestjs/jwt';
+import { createTaskUser } from 'src/task/dto/create-task.dto';
+
 
 
 
@@ -79,8 +81,14 @@ export class UsersController {
     return this.UsersService.updated(data);
   }
 
+  //guardar tarea
+  @Post('/createTask')
+  createTaks(@Body() data: createTaskUser){
+    return this.UsersService.Task(data);
+  }
+
   @Patch('/pass')
-  updatePass(@Body() data: updatePassDto){
+   updatePass(@Body() data: updatePassDto){
     return this.UsersService.updatePass(data);
   }
 

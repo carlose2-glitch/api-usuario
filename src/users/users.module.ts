@@ -9,6 +9,8 @@ import { updatePass } from './updatePass';
 import { JwtModule } from '@nestjs/jwt';
 import { loginUsers } from './loginUser';
 import { ConfigModule } from '@nestjs/config';
+import { tasks } from 'src/task/createTaks';
+import { createTask, taskSchema } from 'src/task/schemas/databaseTaks.schema';
 
 @Module({
   imports: [
@@ -20,7 +22,11 @@ import { ConfigModule } from '@nestjs/config';
       {
         name: createUser.name, 
         schema: usersSchema 
-      }]),
+      },
+    {
+      name: createTask.name,
+      schema: taskSchema
+    }]),
       JwtModule.register({
         secret: process.env.JWT_KEY,
         signOptions:{expiresIn: '300s'},
@@ -29,6 +35,6 @@ import { ConfigModule } from '@nestjs/config';
       
   ],
   controllers: [UsersController],
-  providers:[UsersService, CreateUserEvaluate, updateUser, updatePass, loginUsers]
+  providers:[UsersService, CreateUserEvaluate, updateUser, updatePass, loginUsers, tasks]
 })
 export class UsersModule {}

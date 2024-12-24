@@ -10,11 +10,15 @@ import { updatePassDto } from "./dto/change-Pass-dto";
 import { updatePass } from "./updatePass";
 import { loginUser } from "src/dto/Loginuser.dto";
 import { loginUsers } from "./loginUser";
-import { Response } from "express";
+//import { Response } from "express";
+
+import { createTaskUser } from "src/task/dto/create-task.dto";
+import { tasks } from "src/task/createTaks";
+
 
 @Injectable()
 export class UsersService{
-    constructor(@InjectModel(createUser.name) private UserDocument:Model<UserDocument>, private Evaluate: CreateUserEvaluate, private Update: updateUser, private UpdatePass: updatePass, private LoginUsers: loginUsers){
+    constructor(@InjectModel(createUser.name) private UserDocument:Model<UserDocument>, private Evaluate: CreateUserEvaluate, private Update: updateUser, private UpdatePass: updatePass, private LoginUsers: loginUsers, private CreateTask: tasks,){
     }
 
     async getUsers(){
@@ -43,12 +47,17 @@ export class UsersService{
         const data = await this.Update.update(dat);
 
         return data;
-        
+
     }
 
     async updatePass(data: updatePassDto){
         const result = await this.UpdatePass.updatePass(data);
-    
+
         return result;
     }
+    async Task(data: createTaskUser){
+        const result = await this.CreateTask.createTask(data);
+        return result;
+    }
+
 }

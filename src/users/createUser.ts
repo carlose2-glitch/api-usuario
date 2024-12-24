@@ -5,7 +5,7 @@ import { Model } from "mongoose";
 import { hash } from "bcrypt";
 import { JwtService } from "@nestjs/jwt";
 import { Response } from "express";
-import cookie from "cookie";
+//import cookie from "cookie";
 
 
 

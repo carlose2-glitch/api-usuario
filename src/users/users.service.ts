@@ -59,5 +59,13 @@ export class UsersService{
         const result = await this.CreateTask.createTask(data);
         return result;
     }
+    async getTasks (id: string){
+
+
+
+
+        return this.CreateTask.getAllTasks(id);
+
+    }
 
 }

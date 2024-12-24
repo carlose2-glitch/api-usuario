@@ -17,4 +17,11 @@ constructor(@InjectModel(createTask.name) private TaskDocument: Model<TaskCreate
         return result;
         
     }
+    async getAllTasks(id:string){
+
+        const get = await this.TaskDocument.find({iduser: id});
+
+        return get;
+
+    }
 }

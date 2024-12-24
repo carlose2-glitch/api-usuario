@@ -86,6 +86,11 @@ export class UsersController {
   createTaks(@Body() data: createTaskUser){
     return this.UsersService.Task(data);
   }
+  //extrar tareas del usuario
+  @Get('/extractTask/:id')
+  extractTask(@Param('id') id:string ){
+    return this.UsersService.getTasks(id);
+  }
 
   @Patch('/pass')
    updatePass(@Body() data: updatePassDto){

@@ -24,4 +24,9 @@ constructor(@InjectModel(createTask.name) private TaskDocument: Model<TaskCreate
         return get;
 
     }
+    async deleteTask(id:string){
+
+        return this.TaskDocument.deleteOne({_id:id});
+
+    }
 }

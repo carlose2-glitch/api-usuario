@@ -67,5 +67,10 @@ export class UsersService{
         return this.CreateTask.getAllTasks(id);
 
     }
+    async deleteTask(id:string){
+
+        return this.CreateTask.deleteTask(id);
+
+    }
 
 }

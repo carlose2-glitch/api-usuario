@@ -91,6 +91,15 @@ export class UsersController {
   extractTask(@Param('id') id:string ){
     return this.UsersService.getTasks(id);
   }
+  @Delete('/deleteTask/:id')
+  deleteTaks(@Param('id') id:string){
+    
+  return this.UsersService.deleteTask(id);
+
+
+
+
+  }
 
   @Patch('/pass')
    updatePass(@Body() data: updatePassDto){

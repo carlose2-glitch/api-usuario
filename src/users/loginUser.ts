@@ -42,7 +42,7 @@ export class loginUsers{
 
      
 
-            return token;
+            return {token:token, id:findUser._id,};
         }
 
         return 'Contraseña incorrecta';

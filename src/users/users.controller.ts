@@ -33,7 +33,7 @@ export class UsersController {
 
       return r;
     } catch (error) {
-      throw new UnauthorizedException('ssadad');
+      throw new UnauthorizedException();
     }
 
     

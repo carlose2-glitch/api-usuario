@@ -29,7 +29,7 @@ import { createTask, taskSchema } from 'src/task/schemas/databaseTaks.schema';
     }]),
       JwtModule.register({
         secret: process.env.JWT_KEY,
-        signOptions:{expiresIn: '300s'},
+        signOptions:{expiresIn: '1800s'},
 
       })
       

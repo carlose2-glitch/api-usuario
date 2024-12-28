@@ -7,6 +7,7 @@ import { loginUser } from 'src/dto/Loginuser.dto';
 import { Response } from 'express';
 import { JwtService } from '@nestjs/jwt';
 import { createTaskUser } from 'src/task/dto/create-task.dto';
+import { updateCheck } from 'src/dto/updateCheckTask.dto';
 
 
 
@@ -96,7 +97,13 @@ export class UsersController {
     
   return this.UsersService.deleteTask(id);
 
+  }
+  @Patch('/updatecheckTask')
+  updateCheck(@Body() data: updateCheck){
 
+    
+
+    return this.UsersService.ModifyCheckValue(data);
 
 
   }

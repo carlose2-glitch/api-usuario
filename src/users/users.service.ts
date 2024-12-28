@@ -14,6 +14,7 @@ import { loginUsers } from "./loginUser";
 
 import { createTaskUser } from "src/task/dto/create-task.dto";
 import { tasks } from "src/task/createTaks";
+import { updateCheck } from "src/dto/updateCheckTask.dto";
 
 
 @Injectable()
@@ -70,6 +71,13 @@ export class UsersService{
     async deleteTask(id:string){
 
         return this.CreateTask.deleteTask(id);
+
+    }
+    async ModifyCheckValue (data: updateCheck){
+
+       
+
+        return this.CreateTask.updateCheck(data) ;
 
     }
 
